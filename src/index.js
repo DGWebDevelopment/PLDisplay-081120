@@ -71,7 +71,8 @@ class App extends React.Component {
             'url': 'https://api-football-v1.p.rapidapi.com/v2/fixtures/league/2790',
             'headers': {
                 'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-                'x-rapidapi-key': process.env.REACT_APP_SECRET_KEY
+                //'x-rapidapi-key': process.env.REACT_APP_SECRET_KEY
+                'x-rapidapi-key': "a3e9667df8msh1fa39a70e177eadp14832bjsned2e9b17d6a1"
             },
         })
         .then((response)=>this.filterDownToNextSevenDays(response, orderedDistanceFromEachGround))
@@ -123,7 +124,8 @@ class App extends React.Component {
             'url': 'https://api-football-v1.p.rapidapi.com/v2/leagueTable/2790',
             'headers': {
                 'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-                'x-rapidapi-key': process.env.REACT_APP_SECRET_KEY
+                //'x-rapidapi-key': process.env.REACT_APP_SECRET_KEY
+                'x-rapidapi-key': "a3e9667df8msh1fa39a70e177eadp14832bjsned2e9b17d6a1"
             },
         }).then((results) => {
         
