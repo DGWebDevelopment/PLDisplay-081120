@@ -1,0 +1,79 @@
+#PLDisplayContainer {
+    position: absolute;
+    width:100%;
+}
+
+#PLDisplayContainer > * {
+    position:absolute;
+}
+
+#CentralItemsContainer {
+    width:100%;
+    text-align: center;
+}
+
+#CentralItemsContainer > * {
+    position: relative;
+}
+
+
+#VSTitle {
+    top:-5px;
+    font-size: 60px;
+}
+
+#VenuePicture {
+    width:40%;
+    top:-15px;
+}
+
+
+#HomeTeamContainer {
+    right:70%;
+    width:30%;
+    text-align: center;
+}
+
+#HomeTeamContainer > * {
+    position: relative;
+}
+
+
+#HomeTeamName {
+    top:90px;
+    right:56%;
+}
+
+#HomeTeamLogo {
+    width:30%;
+    top:100px;
+}
+
+#HomeTeamStanding {
+    top:150px
+}
+
+#AwayTeamContainer {
+    left:70%;
+    width:30%;
+    text-align: center;
+}
+
+#AwayTeamContainer > * {
+    position: relative;
+}
+
+#AwayTeamName {
+    top:90px;
+    left:56%;
+}
+
+#AwayTeamLogo {
+    width:30%;
+    top:100px;
+}
+
+#AwayTeamStanding {
+    top:150px
+}
+
