@@ -85,7 +85,7 @@ export default class extends React.Component {
                     <h4 style={{textDecoration:'underline', paddingBottom:'12px', margin:'14px 0px 14px 0px', borderBottom:'1px solid black'}}>Designed and created by Dylan Gallagher (DG Web Development)</h4>
                     <div style={{padding: '0px 0px 17px 0px', margin:'0px 0px 0px 0px', borderBottom:'1px solid black'}}>
                         <p style={{padding:'0px', marginBottom:'5px'}}>dylangallagher@mail.com</p>
-                        <a href="https://github.com/DGWebDevelopment/PLDisplay-071120" target="_blank" style={{color:'white'}}>
+                        <a href="https://github.com/DGWebDevelopment/PLDisplay-081120" target="_blank" style={{color:'white'}}>
                         https://github.com/DGWebDevelopment/PLDisplay-081120
                         </a>
                     </div>
