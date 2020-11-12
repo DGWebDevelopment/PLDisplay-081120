@@ -1,5 +1,5 @@
 import React from 'react'
-import BalotelliPic from './Player Faces/Balotelli-Why-Always-Me.jpg'
+import BalotelliPic from './Player Faces/BalotelliWhyAlwaysMe.jpg'
 
 export default function ({error}) {
     var errorText
