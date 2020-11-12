@@ -13,7 +13,7 @@ export default function () {
             <h1 id='ErrorHeader'>Please activate Geolocation services</h1>
 
             <div style={{width:'40%', position:'absolute', left:'30%'}}>
-                <p id='ErrorText'>Please activate Geolocation services for the browser that you are using.</p>
+                <p id='ErrorText'>Please activate Geolocation services for the browser that you are using and then refresh the page. Thank you.</p>
             </div>
         
         </div>
