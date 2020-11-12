@@ -97,8 +97,6 @@ class App extends React.Component {
     }
     
     filterDownToNextSevenDays(allSeasonFixtures, orderedDistanceFromEachGround) {
-        console.log("I slipped the cracks")
-        console.log("seasonfixtures", allSeasonFixtures)
         var dateNowInWholeSeconds = Date.now().toString().substr(0, Date.now().toString().length - 3);
         var dateInSevenDaysInWholeSeconds = parseInt(dateNowInWholeSeconds) + 604800;
     
@@ -115,14 +113,12 @@ class App extends React.Component {
     };
 
     findClosestGameWithinNextSevenDays (orderedDistanceFromEachGround,fixturesWithinNextSevenDays){
-        console.log(orderedDistanceFromEachGround)
-        
         if (fixturesWithinNextSevenDays.length!==0) {
             for (var i =0; i<orderedDistanceFromEachGround.length; i++) {
                 for (var x=0; x<fixturesWithinNextSevenDays.length; x++) {
                     if (orderedDistanceFromEachGround[i].stadium===fixturesWithinNextSevenDays[x].venue) {
                         var game = fixturesWithinNextSevenDays[x]
-                            console.log("bang")
+    
                         this.setState({
                             homeTeamName : game.homeTeam.team_name,
                             homeTeamLogo : game.homeTeam.logo,
@@ -132,7 +128,6 @@ class App extends React.Component {
                             dateAndTime : game.event_date,
                             timeStamp: game.event_timestamp
                         })
-                        console.log(this.state)
     
                         this.getStandings(this.state.homeTeamName, this.state.awayTeamName)
                         return                
@@ -146,7 +141,6 @@ class App extends React.Component {
     };
 
     getStandings (homeTeamName, awayTeamName) {
-        console.log("test")
        axios({
             'method': "GET",
             'url': 'https://api-football-v1.p.rapidapi.com/v2/leagueTable/2790',
