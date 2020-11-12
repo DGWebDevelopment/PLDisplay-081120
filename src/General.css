@@ -1,3 +1,7 @@
+body {
+    background-color:rgb(211, 235, 217);
+}
+
 #popUpButton {
     position:absolute;
     right:10%;

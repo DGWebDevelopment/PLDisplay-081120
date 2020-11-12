@@ -30,5 +30,11 @@ const VenuePictureSources = [
     {teamName: "Molineux Stadium (Wolves)", link:'https://www.whatsonlive.co.uk/birmingham/news/new-stand-to-be-built-at-wolverhampton-wanderers-fcs-molineux-stadium/48299'}
 ]
 
+const OtherPictureSources = [
+    {item: 'Balotelli Picture', link:'https://www.premierleague.com/news/97553'},
+    {item: 'Geolocation Picture', link:'https://developers.google.com/maps/documentation/javascript/geolocation#maps_map_geolocation-javascript'}
+]
+
 export {PlayerPortraitSources}
 export {VenuePictureSources}
+export {OtherPictureSources}

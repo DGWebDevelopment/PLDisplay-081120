@@ -1,6 +1,7 @@
 import React from 'react'
 import {PlayerPortraitSources} from './CreditsSources.js'
 import {VenuePictureSources} from './CreditsSources.js'
+import {OtherPictureSources} from './CreditsSources.js'
 
 export default class extends React.Component {
     constructor (props) {
@@ -59,6 +60,7 @@ export default class extends React.Component {
         },1)
     }
 
+
     render () {
         const PlayerNamesAndSources= PlayerPortraitSources.map (PlayerPortraitSource => {
             return (
@@ -75,6 +77,16 @@ export default class extends React.Component {
                     <td>{VenuePictureSource.teamName}: </td>
                     <td>
                         <a href={VenuePictureSource.link} target="_blank" style={{overflowWrap:'break-word'}}>{VenuePictureSource.link}</a>
+                    </td>
+                </tr>
+            )
+        });
+        const SourcesOfOtherPictures = OtherPictureSources.map (OtherPictureSource => {
+            return (
+                <tr key={OtherPictureSource.item}>
+                    <td>{OtherPictureSource.item}: </td>
+                    <td>
+                        <a href={OtherPictureSource.link} target="_blank" style={{overflowWrap:'break-word'}}>{OtherPictureSource.link}</a>
                     </td>
                 </tr>
             )
@@ -127,6 +139,10 @@ export default class extends React.Component {
                         <th colSpan="2">Venue pictures used:</th>
                     </tr>
                     {VenueNamesAndSources}
+                    <tr>
+                        <th colSpan="2">Other pictures used:</th>
+                    </tr>
+                    {SourcesOfOtherPictures}
                    </tbody>
                 </table>
                 <p style={{color:'orange', fontWeight:'bold', textAlign:'center', padding:'0px 10px 0px 10px'}}>

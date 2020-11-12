@@ -50,7 +50,7 @@ export default class extends React.Component {
     }
 
     componentDidMount () {
-        document.body.style.backgroundColor="rgb(211, 235, 217)"
+        //document.body.style.backgroundColor="rgb(211, 235, 217)"
         this.RotationCounter();
     }
 
