@@ -12,6 +12,9 @@ import GenericErrorScreen from './GenericErrorScreen.js';
 import PLDisplay from './PLDisplay.js';
 import CreditsSourcesPopup from './CreditsSourcesPopup.js'
 
+require('dotenv').config();
+console.log(process.env)
+
 class App extends React.Component {
     constructor (props) {
         super(props);
@@ -41,7 +44,7 @@ class App extends React.Component {
 
    
     componentDidMount () {
-        //const myAPIPassword = process.env.REACT_APP_MY_API_PASSWORD;
+        const myAPIPassword = process.env.REACT_APP_MY_API_PASSWORD;
 
         console.log(Date.now())
         fetch('https://api.ipify.org?format=json')
@@ -90,7 +93,7 @@ class App extends React.Component {
 
     computeNearestGround (position) {
         console.log("Coords are Lat: "+position.coords.latitude+" and Long: "+position.coords.longitude)
-        //const myAPIPassword = process.env.REACT_APP_MY_API_PASSWORD;
+        const myAPIPassword = process.env.REACT_APP_MY_API_PASSWORD;
 
         fetch('https://api.ipify.org?format=json')
             .then(results=>results.json()
