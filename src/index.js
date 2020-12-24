@@ -41,7 +41,7 @@ class App extends React.Component {
 
    
     componentDidMount () {
-        const myAPIPassword = process.env.REACT_APP_MY_API_PASSWORD;
+        //const myAPIPassword = process.env.REACT_APP_MY_API_PASSWORD;
 
         console.log(Date.now())
         fetch('https://api.ipify.org?format=json')
@@ -90,7 +90,7 @@ class App extends React.Component {
 
     computeNearestGround (position) {
         console.log("Coords are Lat: "+position.coords.latitude+" and Long: "+position.coords.longitude)
-        const myAPIPassword = process.env.REACT_APP_MY_API_PASSWORD;
+        //const myAPIPassword = process.env.REACT_APP_MY_API_PASSWORD;
 
         fetch('https://api.ipify.org?format=json')
             .then(results=>results.json()
