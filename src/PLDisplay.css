@@ -20,11 +20,13 @@
 #VSTitle {
     top:-5px;
     font-size: 60px;
+    /*font-size: 25px;*/
 }
 
 #VenuePicture {
     width:40%;
     top:-15px;
+    /*top:40px;*/
 }
 
 
@@ -42,6 +44,7 @@
 #HomeTeamName {
     top:90px;
     right:56%;
+    /*font-size: x-large;*/
 }
 
 #HomeTeamLogo {

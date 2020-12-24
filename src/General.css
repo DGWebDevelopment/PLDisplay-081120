@@ -61,3 +61,7 @@ tr td:first-child {
     border-color: red;
     top:-2px;
   }
+
+  #LoadingText, #ErrorText {
+    color:red;
+}
