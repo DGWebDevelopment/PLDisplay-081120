@@ -50,7 +50,6 @@ export default class extends React.Component {
     }
 
     componentDidMount () {
-        //document.body.style.backgroundColor="rgb(211, 235, 217)"
         this.RotationCounter();
     }
 
@@ -70,7 +69,11 @@ export default class extends React.Component {
 
                 <div id="LoadingTitleContainer">
                     <h1 id='LoadingHeader'>PLEASE WAIT</h1>
-                    <p id='LoadingText'>Locating the nearest Premier League game to you{this.LoadingDots()}</p>
+                    <p id='LoadingText'>
+                        Locating the nearest Premier League game to you{this.LoadingDots()}
+                        <br/>
+                        Please make sure that Geolocation is enabled!
+                    </p>
                 </div>
             </div>
         )

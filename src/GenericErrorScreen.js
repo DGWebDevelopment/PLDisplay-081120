@@ -24,7 +24,7 @@ export default function ({error}) {
         <div id="ErrorTitleContainer">
             <h1 id='ErrorHeader'>OH NO</h1>
 
-            <div style={{width:'40%', position:'absolute', left:'30%'}}>
+            <div id ="ErrorTextDiv">
                 <p id='ErrorText'>{errorText}</p>
             </div>
            

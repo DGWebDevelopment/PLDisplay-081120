@@ -1,13 +1,25 @@
 import React from 'react';
-import './PLDisplay.css'
+import './General.css'
 import * as DateFormatting from './DateFormatting.js'
 
 export default class extends React.Component {
     constructor (props) {
         super(props)
+        console.log("construct")
+    }
+
+    componentDidMount() {
+        //VS sign width = 77px
+        //Each character is approx 11.4px wide
+    }
+
+    componentDidUpdate(){
+      
     }
 
     render () {
+        var offsetController = this.props.innerWidth>1091 ? 30: 20;
+
         var game = this.props.gameInformation
         var formattedVenueImageLink = game.venueName.replace(/['.]/g,'')
 
@@ -46,11 +58,11 @@ export default class extends React.Component {
                 <h4 id="VenueName">Venue: {game.venueName}</h4>
             </div>
 
-            <div id="HomeTeamName">
+            <div id="HomeTeamName" style={{left: (this.props.innerWidth/2)-39-offsetController-(game.homeTeamName.length*11.4)}}>
                 <h2 >{game.homeTeamName}</h2>
             </div>
 
-            <div id="AwayTeamName">
+            <div id="AwayTeamName" style={{left: (this.props.innerWidth/2)+39+offsetController}}>
                 <h2 >{game.awayTeamName}</h2>
             </div>
             
@@ -67,6 +79,6 @@ export default class extends React.Component {
                
         </div>
     }
-}
+};
 
 

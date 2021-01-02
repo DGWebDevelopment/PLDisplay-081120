@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 import './General.css'
-import './LoadingScreenAndErrorScreen.css'
+//import './LoadingScreenAndErrorScreen.css'
 
 import {StadiumInformation} from './Data.js';
 import LoadingScreen from './LoadingScreen.js';
@@ -12,18 +12,18 @@ import GenericErrorScreen from './GenericErrorScreen.js';
 import PLDisplay from './PLDisplay.js';
 import CreditsSourcesPopup from './CreditsSourcesPopup.js'
 
-require('dotenv').config();
-console.log(process.env)
+const myAPIPassword = process.env.REACT_APP_MY_API_PASSWORD;
+const footballAPIPassword = process.env.REACT_APP_FOOTBALL_API_PASSWORD
+
 
 class App extends React.Component {
     constructor (props) {
         super(props);
 
         this.state= {
+            innerWidth:window.innerWidth,
             error:null,
             loaded:null,
-            showPopUp: false,
-            popUpButtonArrowFormat: 'arrow up',
             homeTeamName:null, 
             awayTeamName:null,
             homeTeamLogo:null,
@@ -32,19 +32,17 @@ class App extends React.Component {
             dateAndTime:null,
         }
 
+        this.updateInnerWidth=this.updateInnerWidth.bind(this)
         this.findClosestGameWithinNextSevenDays=this.findClosestGameWithinNextSevenDays.bind(this)
-        this.togglePopup=this.togglePopup.bind(this)
-    }
-
-    togglePopup () {
-        var switchDirection = this.state.popUpButtonArrowFormat=='arrow up'? 'arrow down': 'arrow up'
-        this.setState({showPopUp:!this.state.showPopUp, popUpButtonArrowFormat:switchDirection})
     }
 
 
-   
+    updateInnerWidth() {
+        this.setState({innerWidth : window.innerWidth})
+    }
+
     componentDidMount () {
-        const myAPIPassword = process.env.REACT_APP_MY_API_PASSWORD;
+        window.addEventListener('resize', this.updateInnerWidth )
 
         console.log(Date.now())
         fetch('https://api.ipify.org?format=json')
@@ -54,7 +52,7 @@ class App extends React.Component {
                     fetch('https://www.dgwebdevelopment.co.uk/PLLocatorBackend.php',{
                         method:'POST',
                         body:JSON.stringify({
-                            myAPIPassword:myAPIPassword,
+                            //myAPIPassword:myAPIPassword,
                             userIP:data.ip,
                             date: new Date(),
                             timeStamp:Date.now(),
@@ -93,7 +91,6 @@ class App extends React.Component {
 
     computeNearestGround (position) {
         console.log("Coords are Lat: "+position.coords.latitude+" and Long: "+position.coords.longitude)
-        const myAPIPassword = process.env.REACT_APP_MY_API_PASSWORD;
 
         fetch('https://api.ipify.org?format=json')
             .then(results=>results.json()
@@ -102,7 +99,7 @@ class App extends React.Component {
                     fetch('https://www.dgwebdevelopment.co.uk/PLLocatorBackend.php',{
                         method:'POST',
                         body:JSON.stringify({
-                            myAPIPassword:myAPIPassword,
+                            //myAPIPassword:myAPIPassword,
                             userIP:data.ip,
                             latCoord:position.coords.latitude,
                             longCoord:position.coords.longitude
@@ -127,14 +124,12 @@ class App extends React.Component {
     };
 
     computeClosestGameWithinNextSevenDays (orderedDistanceFromEachGround) {
-        const footballAPIPassword = process.env.REACT_APP_FOOTBALL_API_PASSWORD
     
         axios({
             'method': "GET",
             'url': 'https://api-football-v1.p.rapidapi.com/v2/fixtures/league/2790',
             'headers': {
                 'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-                //'x-rapidapi-key': process.env.REACT_APP_SECRET_KEY
                 'x-rapidapi-key': footballAPIPassword
             },
         })
@@ -195,8 +190,7 @@ class App extends React.Component {
             'url': 'https://api-football-v1.p.rapidapi.com/v2/leagueTable/2790',
             'headers': {
                 'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-                //'x-rapidapi-key': process.env.REACT_APP_SECRET_KEY
-                'x-rapidapi-key': "a3e9667df8msh1fa39a70e177eadp14832bjsned2e9b17d6a1"
+                'x-rapidapi-key': footballAPIPassword
             },
         }).then((results) => {
         
@@ -211,65 +205,45 @@ class App extends React.Component {
                     }
                 }
             }
-            this.setState({loaded:true})
+            //this.setState({loaded:true})
         }).catch(()=>{
             this.setState({error:'footballAPIError'})
         })
     }
 
     render () {
-        if (this.state.error!==null) {
+        let page;
+        let CreditsSourcesPopupProps;
+
+        //During Loading:
+        if (this.state.loaded===null && this.state.error===null) {
+            page= <LoadingScreen togglePopUp={this.togglePopUp} showPopUp={this.state.showPopUp} />;
+            CreditsSourcesPopupProps = "loadingScreen";
+        }
+        //If loaded successfully
+        else if(this.state.loaded!==null && this.state.error===null){
+            page= <PLDisplay gameInformation={this.state} togglePopUp={this.togglePopUp} showPopUp={this.state.showPopUp} innerWidth={this.state.innerWidth} />;
+            CreditsSourcesPopupProps = "PLDisplayScreen";
+        }
+        //If there is an error:
+        if (this.state.error!==null){
             if (this.state.error=='geolocationDisabledError') {
-                return <div>
-                    <GeolocationDisabledErrorScreen />
-
-                    <div id="popUpButton" onClick={this.togglePopup}>
-                        <i className={this.state.popUpButtonArrowFormat}></i>
-                        <span style={{marginLeft:'40px'}}>Credits/Sources</span>
-                    </div>
-
-                    <CreditsSourcesPopup toggle={this.state.showPopUp} />
-                </div>
+                page= <GeolocationDisabledErrorScreen />;
             }
-            else {
-                return <div>
-                    <GenericErrorScreen error={this.state.error}/>
-                    <div id="popUpButton" onClick={this.togglePopup}>
-                        <i className={this.state.popUpButtonArrowFormat}></i>
-                        <span style={{marginLeft:'40px'}}>Credits/Sources</span>
-                    </div>
-
-                    <CreditsSourcesPopup toggle={this.state.showPopUp} />
-                </div>
+            else if (this.state.error) {
+                page= <GenericErrorScreen error={this.state.error}/>;
             }
+            CreditsSourcesPopupProps = "errorScreen";
         }
 
-        if (this.state.loaded===null) {
-            return <div>
-                <LoadingScreen togglePopUp={this.togglePopUp} showPopUp={this.state.showPopUp} />
-                <div id="popUpButton" onClick={this.togglePopup}>
-                    <i className={this.state.popUpButtonArrowFormat}></i>
-                    <span style={{marginLeft:'40px'}}>Credits/Sources</span>
-                </div>
-
-                <CreditsSourcesPopup toggle={this.state.showPopUp} />
-            </div>
-        }
-        else {
-            return <div>
-                <PLDisplay gameInformation={this.state} togglePopUp={this.togglePopUp} showPopUp={this.state.showPopUp} />
-                <div id="popUpButton" onClick={this.togglePopup}>
-                    <i className={this.state.popUpButtonArrowFormat}></i>
-                    <span style={{marginLeft:'40px'}}>Credits/Sources</span>
-                </div>
-
-                <CreditsSourcesPopup toggle={this.state.showPopUp} />
-            </div>
-        }
+        //Final rendering:
+        return <div>
+            {page}
+            <CreditsSourcesPopup innerWidth={this.state.innerWidth} page={CreditsSourcesPopupProps}/>
+        </div>
     }
 }
 
-
-
-
 ReactDOM.render(<App />, document.querySelector('#root'));
+
+
