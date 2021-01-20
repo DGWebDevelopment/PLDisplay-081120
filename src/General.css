@@ -4,6 +4,8 @@
     position: absolute;
     top:0%;
     left:0%;
+    padding:0px;
+    margin:0px;
     background-image:url('../src/Venue Pictures/artificial green grass draft 1.jpg');
     background-size:cover;
     z-index:-10;
