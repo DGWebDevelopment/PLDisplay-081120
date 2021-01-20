@@ -1,4 +1,9 @@
-.backgroundImage {
+body {
+    background-image:url('../src/Venue Pictures/artificial green grass draft 1.jpg');
+    background-size:cover;
+}
+
+/*.backgroundImage {
     width:100%;
     height:100%;
     position: absolute;
@@ -9,7 +14,7 @@
     background-image:url('../src/Venue Pictures/artificial green grass draft 1.jpg');
     background-size:cover;
     z-index:-10;
-}
+}*/
 #popUpButton {
     display:inline-block;
     width:200px;
