@@ -72,10 +72,10 @@ class App extends React.Component {
           };
     };
 
-    getPositionOfUserAndStartComputations () {
+    getPositionOfUserAndStartComputations () {console.log("commence position hunting")
         window.navigator.geolocation.getCurrentPosition(
             position => this.computeNearestGround(position),
-            error => {
+            error => {console.log("position error")
                 switch (error.code) {
                     case error.PERMISSION_DENIED:
                         this.setState({error:'geolocationDisabledError'})
@@ -205,7 +205,7 @@ class App extends React.Component {
                     }
                 }
             }
-            //this.setState({loaded:true})
+            this.setState({loaded:true})
         }).catch(()=>{
             this.setState({error:'footballAPIError'})
         })

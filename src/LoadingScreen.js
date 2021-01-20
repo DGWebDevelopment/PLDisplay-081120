@@ -62,7 +62,7 @@ export default class extends React.Component {
         return (
             <div>
                 <div id="PlayerPortraitsContainer">
-                    <img src={PlayerPortraits[this.state.PlayerPortraitsIndex]}
+                    <img id="PlayerPortraitsPicture"src={PlayerPortraits[this.state.PlayerPortraitsIndex]}
                         style={{transform:`rotate(${this.state.angle}deg)`}}>
                     </img>
                 </div>
@@ -70,9 +70,9 @@ export default class extends React.Component {
                 <div id="LoadingTitleContainer">
                     <h1 id='LoadingHeader'>PLEASE WAIT</h1>
                     <p id='LoadingText'>
-                        Locating the nearest Premier League game to you{this.LoadingDots()}
+                        <span>Locating the nearest Premier League game to you{this.LoadingDots()}</span>
                         <br/>
-                        Please make sure that Geolocation is enabled!
+                        <span>Please ensure that Geolocation is enabled!</span>
                     </p>
                 </div>
             </div>

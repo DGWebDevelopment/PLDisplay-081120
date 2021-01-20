@@ -22,6 +22,16 @@ export default class extends React.Component {
 
         var game = this.props.gameInformation
         var formattedVenueImageLink = game.venueName.replace(/['.]/g,'')
+        var formattedDate = formatDate(game.timeStamp)
+
+        var homeTeamFormattedStanding = formatStanding(game.homeTeamStanding).formattedStanding
+        var homeTeamFormattedStandingStyles = formatStanding(game.homeTeamStanding).formattedStandingStyles
+
+        var awayTeamFormattedStanding = formatStanding(game.awayTeamStanding).formattedStanding
+        var awayTeamFormattedStandingStyles = formatStanding(game.awayTeamStanding).formattedStandingStyles
+
+
+
 
         function formatDate(timeStamp) {
             var xx = new Date()
@@ -41,11 +51,34 @@ export default class extends React.Component {
             if (standing!==undefined){
                 var standingFormats = ["1st", "2nd", "3rd"]
                 if (standing>=1 && standing<=3) {
-                    return standingFormats[standing-1]
+                    return {
+                        formattedStanding:standingFormats[standing-1],
+                        formattedStandingStyles:formatStandingStyles(standing),
+                    }
                 }
                 else {
-                    return `${standing}th`
+                    return {
+                        formattedStanding:`${standing}th`,
+                        formattedStandingStyles:formatStandingStyles(standing)
+                    }
                 }
+            }
+        }
+
+        function formatStandingStyles(standing){
+            switch(true){
+                case(standing===1):
+                    return {backgroundColor: 'gold', border: '1px solid white'};
+                break;
+                case(standing>1 && standing<=7):
+                return {backgroundColor: 'rgb(225,227,225)', border: '1px solid green'};
+                break;
+                case(standing>7 && standing<=13):
+                return {backgroundColor: 'rgb(225,227,225)', border: '1px solid orange'};
+                break;
+                case(standing>13 && standing<=20):
+                return {backgroundColor: 'rgb(225,227,225)', border: '1px solid red'};
+                break;
             }
         }
 
@@ -54,10 +87,14 @@ export default class extends React.Component {
                 <h1 id ="MainTitle">The closest Premier League game to you in the next seven days is:</h1>
                 <h1 id="VSTitle">VS</h1>
                 <img id="VenuePicture" src={require(`./Venue Pictures/${formattedVenueImageLink}.jpg`)} />
-                <h3 id="DateAndTime">{formatDate(game.timeStamp)}</h3>
-                <h4 id="VenueName">Venue: {game.venueName}</h4>
+                <div id="DateAndTimeDiv">
+                    <h3 className="greyText">{formattedDate}</h3>
+                </div>
+                <div id="VenueNameDiv">
+                    <h4 className="greyText">Venue: {game.venueName}</h4>
+                </div>
+                
             </div>
-
             <div id="HomeTeamName" style={{left: (this.props.innerWidth/2)-39-offsetController-(game.homeTeamName.length*11.4)}}>
                 <h2 >{game.homeTeamName}</h2>
             </div>
@@ -65,20 +102,43 @@ export default class extends React.Component {
             <div id="AwayTeamName" style={{left: (this.props.innerWidth/2)+39+offsetController}}>
                 <h2 >{game.awayTeamName}</h2>
             </div>
-            
 
             <div id="HomeTeamContainer">
                 <img id="HomeTeamLogo" src={game.homeTeamLogo} />
-                <h3 id="HomeTeamStanding">{formatStanding(game.homeTeamStanding)} place</h3>
+                <div id="HomeTeamStanding">
+                    <h3 className="greyText" style={{backgroundColor:homeTeamFormattedStandingStyles.backgroundColor ,border:homeTeamFormattedStandingStyles.border}}>{homeTeamFormattedStanding} place</h3>
+                </div>
             </div>
 
             <div id="AwayTeamContainer">
                 <img id="AwayTeamLogo" src={game.awayTeamLogo} />
-                <h3 id="AwayTeamStanding">{formatStanding(game.awayTeamStanding)} place</h3>
+                <div id="AwayTeamStanding">
+                    <h3 className="greyText" style={{backgroundColor:awayTeamFormattedStandingStyles.backgroundColor ,border:awayTeamFormattedStandingStyles.border}}>{awayTeamFormattedStanding} place</h3>
+                </div>
             </div>
-               
         </div>
     }
 };
 
+//<h3 style={{ backgroundColor:'', border:homeTeamFormattedStandingStyles.border}}>{homeTeamFormattedStanding} place</h3>
+//<h3 style={{backgroundColor:awayTeamFormattedStandingStyles.backgroundColor ,border:awayTeamFormattedStandingStyles.border}}>{awayTeamFormattedStanding} place</h3>
 
+
+
+
+
+//game.awayTeamStanding
+
+/*<div id="HomeTeamContainer">
+                <img id="HomeTeamLogo" src={game.homeTeamLogo} />
+                <div id="HomeTeamStanding">
+                    <h3 style={{display:'inline-block', padding:'0px 5px 0px 5px', border:formatStanding(game.homeTeamStanding).color.border, backgroundColor:formatStanding(game.homeTeamStanding).color.backgroundColor, color:formatStanding(game.homeTeamStanding).color.textColor, borderRadius:'5px'}}>{formatStanding(game.homeTeamStanding).formattedStanding} place</h3>
+                </div>
+</div>*/
+
+/*<div id="AwayTeamContainer">
+                <img id="AwayTeamLogo" src={game.awayTeamLogo} />
+                <div id="AwayTeamStanding">
+                    <h3 style={{display:'inline-block', padding:'0px 5px 0px 5px', border:formatStanding(game.awayTeamStanding).color.border, backgroundColor:formatStanding(game.awayTeamStanding).color.backgroundColor, color:formatStanding(game.awayTeamStanding).color.textColor, borderRadius:'5px'}}>{formatStanding(game.awayTeamStanding).formattedStanding} place</h3>
+                </div>
+</div>*/
