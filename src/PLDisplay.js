@@ -18,6 +18,7 @@ export default class extends React.Component {
     }
 
     render () {
+        console.log("PLDisplay: PROPS CHANGE")
         var offsetController = this.props.innerWidth>1091 ? 30: 20;
 
         var game = this.props.gameInformation
@@ -82,26 +83,63 @@ export default class extends React.Component {
             }
         }
 
+        let HomeTeamNameNonMobile;
+        let AwayTeamNameNonMobile
+        let VSHeader;
+        let HomeTeamNameMobile;
+        let AwayTeamNameMobile;
+
+        if (this.props.innerWidth>580){
+            HomeTeamNameNonMobile = (
+                <div id="HomeTeamName" style={{left: (this.props.innerWidth/2)-39-offsetController-(game.homeTeamName.length*11.4)}}>
+                    <h2 >{game.homeTeamName}</h2>
+                </div>
+            )
+            VSHeader = (
+                <h1 style={{top:'-5px', fontSize:'60px'}}>VS</h1>
+            )
+            AwayTeamNameNonMobile = (
+                <div id="AwayTeamName" style={{left: (this.props.innerWidth/2)+39+offsetController}}>
+                    <h2 >{game.awayTeamName}</h2>
+                </div>
+            )
+        }
+        else if (this.props.innerWidth<=580) {
+            HomeTeamNameMobile = (
+                <h2>{game.homeTeamName}</h2>
+            )
+            VSHeader = (
+                <h3 style={{top:'-12px'}}>VS</h3>
+            )
+            AwayTeamNameMobile = (
+                <h2 style={{top:'-27px'}}>{game.awayTeamName}</h2>
+            )
+        }
+        
+
+
+
+
+
+
+
         return <div id="PLDisplayContainer">
             <div id="CentralItemsContainer">
                 <h1 id ="MainTitle">The closest Premier League game to you in the next seven days is:</h1>
-                <h1 id="VSTitle">VS</h1>
+                {HomeTeamNameMobile}
+                {VSHeader}
+                {AwayTeamNameMobile}
                 <img id="VenuePicture" src={require(`./Venue Pictures/${formattedVenueImageLink}.jpg`)} />
                 <div id="DateAndTimeDiv">
-                    <h3 className="greyText">{formattedDate}</h3>
+                    <h3 id ="formattedDate" className="greyText">{formattedDate}</h3>
                 </div>
                 <div id="VenueNameDiv">
-                    <h4 className="greyText">Venue: {game.venueName}</h4>
+                    <h4 id = "venueName"className="greyText">Venue: {game.venueName}</h4>
                 </div>
-                
-            </div>
-            <div id="HomeTeamName" style={{left: (this.props.innerWidth/2)-39-offsetController-(game.homeTeamName.length*11.4)}}>
-                <h2 >{game.homeTeamName}</h2>
             </div>
 
-            <div id="AwayTeamName" style={{left: (this.props.innerWidth/2)+39+offsetController}}>
-                <h2 >{game.awayTeamName}</h2>
-            </div>
+            {HomeTeamNameNonMobile}
+            {AwayTeamNameNonMobile}
 
             <div id="HomeTeamContainer">
                 <img id="HomeTeamLogo" src={game.homeTeamLogo} />
@@ -120,25 +158,11 @@ export default class extends React.Component {
     }
 };
 
-//<h3 style={{ backgroundColor:'', border:homeTeamFormattedStandingStyles.border}}>{homeTeamFormattedStanding} place</h3>
-//<h3 style={{backgroundColor:awayTeamFormattedStandingStyles.backgroundColor ,border:awayTeamFormattedStandingStyles.border}}>{awayTeamFormattedStanding} place</h3>
 
+/*<div id="HomeTeamName" style={{left: (this.props.innerWidth/2)-39-offsetController-(game.homeTeamName.length*11.4)}}>
+    <h2 >{game.homeTeamName}</h2>
+</div>
 
-
-
-
-//game.awayTeamStanding
-
-/*<div id="HomeTeamContainer">
-                <img id="HomeTeamLogo" src={game.homeTeamLogo} />
-                <div id="HomeTeamStanding">
-                    <h3 style={{display:'inline-block', padding:'0px 5px 0px 5px', border:formatStanding(game.homeTeamStanding).color.border, backgroundColor:formatStanding(game.homeTeamStanding).color.backgroundColor, color:formatStanding(game.homeTeamStanding).color.textColor, borderRadius:'5px'}}>{formatStanding(game.homeTeamStanding).formattedStanding} place</h3>
-                </div>
-</div>*/
-
-/*<div id="AwayTeamContainer">
-                <img id="AwayTeamLogo" src={game.awayTeamLogo} />
-                <div id="AwayTeamStanding">
-                    <h3 style={{display:'inline-block', padding:'0px 5px 0px 5px', border:formatStanding(game.awayTeamStanding).color.border, backgroundColor:formatStanding(game.awayTeamStanding).color.backgroundColor, color:formatStanding(game.awayTeamStanding).color.textColor, borderRadius:'5px'}}>{formatStanding(game.awayTeamStanding).formattedStanding} place</h3>
-                </div>
+<div id="AwayTeamName" style={{left: (this.props.innerWidth/2)+39+offsetController}}>
+    <h2 >{game.awayTeamName}</h2>
 </div>*/

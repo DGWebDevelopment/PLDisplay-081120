@@ -18,6 +18,7 @@ body {
 #popUpButton {
     display:inline-block;
     width:200px;
+    position:absolute;
     background-color:white;
     cursor: pointer;
     border:2px solid black;
@@ -27,6 +28,7 @@ body {
 }
 #popUp {
     width:402px;
+    position:absolute;
     background-color: white;
     display:inline-block;
     overflow:scroll;
@@ -118,7 +120,7 @@ tr td:first-child {
 }
 #HomeTeamName {
     top:90px;
-    right:56%;
+    /*right:56%;*/
 }
 #HomeTeamLogo {
     width:30%;
@@ -143,7 +145,7 @@ tr td:first-child {
 }
 #AwayTeamName {
     top:90px;
-    left:56%;
+    /*left:56%;*/
 }
 #AwayTeamLogo {
     width:30%;
@@ -205,11 +207,11 @@ tr td:first-child {
     }
     #HomeTeamName {
         top:130px;
-        right:56%;
+        /*right:56%;*/
     }
     #AwayTeamName {
         top:130px;
-        left:56%;
+        /*left:56%;*/
     }
     #HomeTeamLogo {
         top:130px;
@@ -252,6 +254,50 @@ tr td:first-child {
 }
 
 @media screen and (max-width: 580px){
+    #MainTitle {
+        font-size:17px;
+        font-size: 100%;
+        top:0px;
+    }
+
+    #VSTitle {
+        font-size:22px;
+        top:-15px;
+    }
+
+    #VenuePicture {
+        width:80%;
+        top:-26px;
+    }
+
+    .greyText {
+        background-color: transparent;
+    }
+
+    #DateAndTimeDiv {
+        display:inline-block;
+        width:80%;
+        top:4px;
+    }
+    #formattedDate {
+        font-size: large;
+    }
+
+    #VenueNameDiv {
+        top:24px;
+    }
+    #venueName {
+        font-size: medium;
+    }
+
+
+    /*#popUpButton {
+        position:relative;
+    }
+    #popUp {
+        width:70%;
+        position:relative;
+    }*/
     /*#MainTitle{
         
     }

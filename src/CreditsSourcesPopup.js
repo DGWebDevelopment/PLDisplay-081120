@@ -220,10 +220,16 @@ export default class extends React.Component {
                     popUpButtonRight='10%';
                     popUpRight='10%';
                 break;
-                case(innerWidth<=797):
+                case(innerWidth>580 && innerWidth<=797):
                     popUpButtonTop=530;
                     popUpButtonRight=`${(innerWidth-200)/2}px`;
                     popUpRight=`${(innerWidth-402)/2}px`;
+                break;
+                case(innerWidth<=580):
+                popUpButtonTop=530;
+                popUpButtonRight=`${(innerWidth-200)/2}px`;
+                popUpRight=`${0.15*innerWidth}px`;
+                break;
             }
         }
  
@@ -317,13 +323,6 @@ export default class extends React.Component {
             }
         }
 
-
-
-
-
-
-
-
         if (this.state.showPopUp!==prevState.showPopUp && this.state.showPopUp==true) {
             if (this.state.popUpAnimationComplete==false) {
                 clearInterval(this.contractionAnimation)
@@ -403,19 +402,18 @@ export default class extends React.Component {
             )
         });
 
-
-        return <div >
-                <div id="popUpButton" ref={this.popUpButton} onClick={this.togglePopup} style={{position:'absolute', top:this.state.popUpButtonTop, right:this.state.popUpButtonRight}}>
+        return <div>
+                <div id="popUpButton" ref={this.popUpButton} onClick={this.togglePopup} style={{top:this.state.popUpButtonTop, right:this.state.popUpButtonRight}}>
                     <i className={this.state.popUpButtonArrowFormat}></i>
                     <span style={{marginLeft:'40px'}}>Credits/Sources</span>
                 </div>
 
-                <div id="popUp" style={{position:'absolute', top:`${this.state.popUpTop}px`, right:this.state.popUpRight, height:`${this.state.height}px`, border:this.state.border}}>
+                <div id="popUp" style={{top:`${this.state.popUpTop}px`, right:this.state.popUpRight, height:`${this.state.height}px`, border:this.state.border}}>
                     <div style={{width: '100%', textAlign:'center'}}>
                         <h4 style={{textDecoration:'underline', paddingBottom:'12px', margin:'14px 0px 14px 0px', borderBottom:'1px solid black'}}>Designed and created by Dylan Gallagher (DG Web Development)</h4>
                         <div style={{padding: '0px 0px 17px 0px', margin:'0px 0px 0px 0px', borderBottom:'1px solid black'}}>
-                            <p style={{padding:'0px', marginBottom:'5px'}}>dylangallagher@mail.com</p>
-                            <a href="https://github.com/DGWebDevelopment/PLDisplay-081120" target="_blank" style={{color:'white'}}>
+                            <p style={{padding:'0px', marginBottom:'5px', overflowWrap:'break-word'}}>dylangallagher@mail.com</p>
+                            <a href="https://github.com/DGWebDevelopment/PLDisplay-081120" target="_blank" style={{color:'white', overflowWrap:'break-word'}}>
                             https://github.com/DGWebDevelopment/PLDisplay-081120
                             </a>
                         </div>
