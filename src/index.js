@@ -237,7 +237,7 @@ class App extends React.Component {
         }
 
         //Final rendering:
-        return <div style={{paddingBottom:'650px'}}>
+        return <div>
             {page}
             <CreditsSourcesPopup innerWidth={this.state.innerWidth} page={CreditsSourcesPopupProps}/>
         </div>
