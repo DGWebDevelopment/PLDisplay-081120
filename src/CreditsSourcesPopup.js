@@ -209,7 +209,8 @@ export default class extends React.Component {
 
         var popUpButtonTop;
         var popUpButtonRight;
-        var popUpRight
+        var popUpWidth;
+        var popUpRight;
 
 
         if(props.page==="loadingScreen" || props.page==="errorScreen"){
@@ -228,6 +229,7 @@ export default class extends React.Component {
                 case(innerWidth<=580):
                 popUpButtonTop=530;
                 popUpButtonRight=`${(innerWidth-200)/2}px`;
+                popUpWidth = `${0.70*innerWidth}px`;
                 popUpRight=`${0.15*innerWidth}px`;
                 break;
             }
@@ -239,6 +241,7 @@ export default class extends React.Component {
             popUpButtonTop:popUpButtonTop,
             popUpButtonRight:popUpButtonRight,
             popUpTop:popUpButtonTop,
+            popUpWidth:popUpWidth,
             popUpRight:popUpRight,
             height:0,
             border:null,
@@ -322,6 +325,13 @@ export default class extends React.Component {
 
             }
         }
+
+        if (innerWidth!==prevProps.innerWidth && innerWidth<=580){
+            this.setState({popUpWidth:`${0.70*innerWidth}px`, popUpRight:`${0.15*innerWidth}px`})
+        }
+        /*else if(innerWidth!==prevProps.innerWidth && innerWidth>580){
+            this.setState({popUpWidth:'402px', popUpRight:'10%'})
+        }*/
 
         if (this.state.showPopUp!==prevState.showPopUp && this.state.showPopUp==true) {
             if (this.state.popUpAnimationComplete==false) {
@@ -408,7 +418,7 @@ export default class extends React.Component {
                     <span style={{marginLeft:'40px'}}>Credits/Sources</span>
                 </div>
 
-                <div id="popUp" style={{top:`${this.state.popUpTop}px`, right:this.state.popUpRight, height:`${this.state.height}px`, border:this.state.border}}>
+                <div id="popUp" style={{top:`${this.state.popUpTop}px`, right:this.state.popUpRight, height:`${this.state.height}px`, width:this.state.popUpWidth, border:this.state.border}}>
                     <div style={{width: '100%', textAlign:'center'}}>
                         <h4 style={{textDecoration:'underline', paddingBottom:'12px', margin:'14px 0px 14px 0px', borderBottom:'1px solid black'}}>Designed and created by Dylan Gallagher (DG Web Development)</h4>
                         <div style={{padding: '0px 0px 17px 0px', margin:'0px 0px 0px 0px', borderBottom:'1px solid black'}}>
