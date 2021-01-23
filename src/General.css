@@ -1,8 +1,8 @@
 body {
     background-image:url('../src/Venue Pictures/artificial green grass draft 1.jpg');
     background-size:cover;
-    padding-bottom: 70px;
 }
+
 
 
 /*.backgroundImage {
@@ -293,8 +293,13 @@ tr td:first-child {
     #venueName {
         font-size: medium;
     }
-    
-
+    #bufferDiv {
+        position:absolute;
+        top:680px;
+        width:300px;
+        height:40px;
+    }
+   
 
     /*#popUpButton {
         position:relative;

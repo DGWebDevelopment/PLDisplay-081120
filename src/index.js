@@ -240,6 +240,7 @@ class App extends React.Component {
         return <div>
             {page}
             <CreditsSourcesPopup innerWidth={this.state.innerWidth} page={CreditsSourcesPopupProps}/>
+            <div id="bufferDiv"></div>
         </div>
     }
 }
