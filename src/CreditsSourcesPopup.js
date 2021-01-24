@@ -229,8 +229,8 @@ export default class extends React.Component {
                 case(innerWidth<=580):
                 popUpButtonTop=530;
                 popUpButtonRight=`${(innerWidth-200)/2}px`;
-                popUpWidth = `${0.70*innerWidth}px`;
-                popUpRight=`${0.15*innerWidth}px`;
+                popUpWidth = `${0.82*innerWidth}px`;
+                popUpRight=`${0.09*innerWidth}px`;
                 break;
             }
         }
@@ -285,8 +285,8 @@ export default class extends React.Component {
                 })
             }
         }
-        else if(this.props.page==="PLDisplayScreen" && innerWidth!==prevProps.innerWidth){
-            if(prevProps.innerWidth<797 && innerWidth>=797){
+        else if (this.props.page==="PLDisplayScreen" && innerWidth!==prevProps.innerWidth){
+            if (prevProps.innerWidth<797 && innerWidth>=797){
                 this.setState({
                     popUpTop:this.state.popUpTop-30,
                 
@@ -302,6 +302,11 @@ export default class extends React.Component {
                 
                     popUpButtonTop:660,
                 })
+            }
+            else if (prevProps.innerWidth>580 && innerWidth<=580){
+                //change this
+
+                
             }
             if(innerWidth<797 && this.state.popUpButtonRight!==`${(innerWidth-200)/2}px`){
                 console.log("width readujustment")
@@ -319,15 +324,19 @@ export default class extends React.Component {
                     popUpTop:this.state.popUpTop+130
                 })
             }
-            else if(innerWidth>=797){
+            if (innerWidth<=422){
+                this.setState({
+                    popUpButtonTop:580,
+                    //popUpTop:
+                })
 
 
-
+                ///////change this
             }
         }
 
         if (innerWidth!==prevProps.innerWidth && innerWidth<=580){
-            this.setState({popUpWidth:`${0.70*innerWidth}px`, popUpRight:`${0.15*innerWidth}px`})
+            this.setState({popUpWidth:`${0.82*innerWidth}px`, popUpRight:`${0.09*innerWidth}px`})
         }
         /*else if(innerWidth!==prevProps.innerWidth && innerWidth>580){
             this.setState({popUpWidth:'402px', popUpRight:'10%'})
