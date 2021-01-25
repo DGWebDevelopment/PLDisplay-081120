@@ -265,23 +265,13 @@ export default class extends React.Component {
             if(prevProps.innerWidth<797 && innerWidth>=797){
                 this.setState({
                     popUpTop:this.state.popUpTop+100,
-                
                     popUpButtonTop:630,
-                    popUpButtonRight:'10%',
-                    popUpRight:'10%',
                 })
             }
             else if(prevProps.innerWidth>=797 && innerWidth<797){
                 this.setState({
                     popUpTop:this.state.popUpTop-100,
-                
                     popUpButtonTop:530,
-                })
-            }
-            if(innerWidth<797 && this.state.popUpButtonRight!==`${(innerWidth-200)/2}px`){
-                this.setState({
-                    popUpButtonRight:`${(innerWidth-200)/2}px`,
-                    popUpRight:`${(innerWidth-402)/2}px`,
                 })
             }
         }
@@ -289,30 +279,26 @@ export default class extends React.Component {
             if (prevProps.innerWidth<797 && innerWidth>=797){
                 this.setState({
                     popUpTop:this.state.popUpTop-30,
-                
                     popUpButtonTop:630,
-                    popUpButtonRight:'10%',
-                    popUpRight:'10%',
                 })
             }
-            else if(prevProps.innerWidth>=797 && innerWidth<797){
+            if(prevProps.innerWidth>=797 && innerWidth<797){
                 console.log("CRASH")
                 this.setState({
                     popUpTop:this.state.popUpTop+30,
-                
                     popUpButtonTop:660,
                 })
             }
-            else if (prevProps.innerWidth>580 && innerWidth<=580){
-                //change this
-
-                
-            }
-            if(innerWidth<797 && this.state.popUpButtonRight!==`${(innerWidth-200)/2}px`){
-                console.log("width readujustment")
+            if (prevProps.innerWidth>422 && innerWidth<=422){
                 this.setState({
-                    popUpButtonRight:`${(innerWidth-200)/2}px`,
-                    popUpRight:`${(innerWidth-402)/2}px`,
+                    popUpTop:this.state.popUpTop-80,
+                    popUpButtonTop:580,
+                })
+            }
+            if (prevProps.innerWidth<=422 && innerWidth>422){
+                this.setState({
+                    popUpTop:this.state.popUpTop+80,
+                    popUpButtonTop:660,
                 })
             }
         }
@@ -327,20 +313,20 @@ export default class extends React.Component {
             if (innerWidth<=422){
                 this.setState({
                     popUpButtonTop:580,
-                    //popUpTop:
+                    popUpTop:this.state.popUpTop+50
                 })
-
-
-                ///////change this
             }
         }
 
-        if (innerWidth!==prevProps.innerWidth && innerWidth<=580){
-            this.setState({popUpWidth:`${0.82*innerWidth}px`, popUpRight:`${0.09*innerWidth}px`})
+        if (innerWidth!==prevProps.innerWidth && innerWidth>=797){
+            this.setState({popUpButtonRight:'10%', popUpWidth:'402px', popUpRight:'10%'})
         }
-        /*else if(innerWidth!==prevProps.innerWidth && innerWidth>580){
-            this.setState({popUpWidth:'402px', popUpRight:'10%'})
-        }*/
+        else if (innerWidth!==prevProps.innerWidth && innerWidth>580 && innerWidth<797){
+            this.setState({popUpButtonRight:`${(innerWidth-200)/2}px`, popUpWidth:'402px', popUpRight:`${(innerWidth-402)/2}px`})
+        }
+        else if (innerWidth!==prevProps.innerWidth && innerWidth<=580){
+            this.setState({popUpButtonRight:`${(innerWidth-200)/2}px`, popUpWidth:`${0.82*innerWidth}px`, popUpRight:`${0.09*innerWidth}px`})
+        }
 
         if (this.state.showPopUp!==prevState.showPopUp && this.state.showPopUp==true) {
             if (this.state.popUpAnimationComplete==false) {
