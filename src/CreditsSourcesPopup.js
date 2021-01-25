@@ -347,7 +347,7 @@ export default class extends React.Component {
             }
         }
     }
-//
+
     expandPopUp() {
         //this.popUpButton.current.style="width:'600px'; height:400px" //This can be used to completely style the mobile page yes?
         //this.popUpButton.current.style.height='400px'
