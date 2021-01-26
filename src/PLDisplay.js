@@ -5,20 +5,9 @@ import * as DateFormatting from './DateFormatting.js'
 export default class extends React.Component {
     constructor (props) {
         super(props)
-        console.log("construct")
-    }
-
-    componentDidMount() {
-        //VS sign width = 77px
-        //Each character is approx 11.4px wide
-    }
-
-    componentDidUpdate(){
-      
     }
 
     render () {
-        console.log("PLDisplay: PROPS CHANGE")
         var offsetController = this.props.innerWidth>1091 ? 30: 20;
 
         var game = this.props.gameInformation
@@ -30,9 +19,6 @@ export default class extends React.Component {
 
         var awayTeamFormattedStanding = formatStanding(game.awayTeamStanding).formattedStanding
         var awayTeamFormattedStandingStyles = formatStanding(game.awayTeamStanding).formattedStandingStyles
-
-
-
 
         function formatDate(timeStamp) {
             var xx = new Date()
@@ -116,13 +102,6 @@ export default class extends React.Component {
             )
         }
         
-
-
-
-
-
-
-
         return <div id="PLDisplayContainer">
             <div id="CentralItemsContainer">
                 <h1 id ="MainTitle">The closest Premier League game to you in the next seven days is:</h1>
@@ -157,12 +136,3 @@ export default class extends React.Component {
         </div>
     }
 };
-
-
-/*<div id="HomeTeamName" style={{left: (this.props.innerWidth/2)-39-offsetController-(game.homeTeamName.length*11.4)}}>
-    <h2 >{game.homeTeamName}</h2>
-</div>
-
-<div id="AwayTeamName" style={{left: (this.props.innerWidth/2)+39+offsetController}}>
-    <h2 >{game.awayTeamName}</h2>
-</div>*/

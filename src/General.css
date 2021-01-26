@@ -2,21 +2,6 @@ body {
     background-image:url('../src/Venue Pictures/artificial green grass draft 1.jpg');
     background-size:cover;
 }
-
-
-
-/*.backgroundImage {
-    width:100%;
-    height:100%;
-    position: absolute;
-    top:0%;
-    left:0%;
-    padding:0px;
-    margin:0px;
-    background-image:url('../src/Venue Pictures/artificial green grass draft 1.jpg');
-    background-size:cover;
-    z-index:-10;
-}*/
 #popUpButton {
     display:inline-block;
     width:200px;
@@ -124,7 +109,6 @@ tr td:first-child {
 }
 #HomeTeamName {
     top:90px;
-    /*right:56%;*/
 }
 #HomeTeamLogo {
     width:30%;
@@ -149,7 +133,6 @@ tr td:first-child {
 }
 #AwayTeamName {
     top:90px;
-    /*left:56%;*/
 }
 #AwayTeamLogo {
     width:30%;
@@ -211,11 +194,9 @@ tr td:first-child {
     }
     #HomeTeamName {
         top:130px;
-        /*right:56%;*/
     }
     #AwayTeamName {
         top:130px;
-        /*left:56%;*/
     }
     #HomeTeamLogo {
         top:130px;
@@ -299,39 +280,4 @@ tr td:first-child {
         width:300px;
         height:28px;
     }
-   
-
-    /*#popUpButton {
-        position:relative;
-    }
-    #popUp {
-        width:70%;
-        position:relative;
-    }*/
-    /*#MainTitle{
-        
-    }
-    #HomeTeamName {
-        position:relative;
-        top:0px;
-        right:0%;
-    }
-    #AwayTeamName {
-        position:relative;
-        top:0px;
-        left:0%;
-    }*/
-
-    /*maximum height over width = 678/1024 = 66%*/
-
-
-
-
-
-
-
-
-
-
-
 }

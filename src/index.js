@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 import './General.css'
-//import './LoadingScreenAndErrorScreen.css'
 
 import {StadiumInformation} from './Data.js';
 import LoadingScreen from './LoadingScreen.js';
@@ -14,7 +13,6 @@ import CreditsSourcesPopup from './CreditsSourcesPopup.js'
 
 const myAPIPassword = process.env.REACT_APP_MY_API_PASSWORD;
 const footballAPIPassword = process.env.REACT_APP_FOOTBALL_API_PASSWORD
-
 
 class App extends React.Component {
     constructor (props) {
@@ -44,7 +42,6 @@ class App extends React.Component {
     componentDidMount () {
         window.addEventListener('resize', this.updateInnerWidth )
 
-        console.log(Date.now())
         fetch('https://api.ipify.org?format=json')
             .then(results=>results.json()
             )
@@ -52,7 +49,7 @@ class App extends React.Component {
                     fetch('https://www.dgwebdevelopment.co.uk/PLLocatorBackend.php',{
                         method:'POST',
                         body:JSON.stringify({
-                            //myAPIPassword:myAPIPassword,
+                            myAPIPassword:myAPIPassword,
                             userIP:data.ip,
                             date: new Date(),
                             timeStamp:Date.now(),
@@ -99,7 +96,7 @@ class App extends React.Component {
                     fetch('https://www.dgwebdevelopment.co.uk/PLLocatorBackend.php',{
                         method:'POST',
                         body:JSON.stringify({
-                            //myAPIPassword:myAPIPassword,
+                            myAPIPassword:myAPIPassword,
                             userIP:data.ip,
                             latCoord:position.coords.latitude,
                             longCoord:position.coords.longitude

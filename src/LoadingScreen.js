@@ -7,7 +7,6 @@ import AubameyangPortrait from './Player Faces/Aubameyang-Portrait-150wide.png';
 import KanePortrait from './Player Faces/Kane-Portrait-150wide.png';
 import TraorePortait from './Player Faces/Traore-Portrait-150wide.png';
 
-
 const PlayerPortraits = [
     DeGeaPortrait,
     DeBruynePortrait,
@@ -17,8 +16,6 @@ const PlayerPortraits = [
     TraorePortait
 ]
 
-
-
 export default class extends React.Component {
     constructor (props) {
         super(props);
@@ -26,7 +23,6 @@ export default class extends React.Component {
 
         this.state={angle:0, PlayerPortraitsIndex:x}
     }
-    
 
     RotationCounter () {
         var counter=0;
@@ -56,7 +52,6 @@ export default class extends React.Component {
     componentWillUnmount () {
         clearInterval(this.intervalID)
     }
-
 
     render() {
         return (
