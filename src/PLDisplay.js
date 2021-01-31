@@ -92,13 +92,17 @@ export default class extends React.Component {
         }
         else if (this.props.innerWidth<=580) {
             HomeTeamNameMobile = (
-                <h2>{game.homeTeamName}</h2>
+                <div style={{textAlign:'center'}}>
+                    <h2 style={{display:'inline-block', padding:'0px 5px 0px 5px', border:`1px solid ${game.homeTeamColor}`, borderRadius:'4px'}}>{game.homeTeamName}</h2>
+                </div>
             )
             VSHeader = (
-                <h3 style={{top:'-12px'}}>VS</h3>
+                <h3 style={{top:'-34px'}}>VS</h3>
             )
             AwayTeamNameMobile = (
-                <h2 style={{top:'-27px'}}>{game.awayTeamName}</h2>
+                <div style={{textAlign:'center', top:'-70px'}}>
+                    <h2 style={{display:'inline-block', padding:'0px 5px 0px 5px', border:`1px solid ${game.awayTeamColor}`, borderRadius:'4px'}}>{game.awayTeamName}</h2>
+                </div>
             )
         }
         

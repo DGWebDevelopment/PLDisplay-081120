@@ -252,7 +252,7 @@ tr td:first-child {
 
     #VenuePicture {
         width:80%;
-        top:-26px;
+        top:-60px;
     }
 
     .greyText {
@@ -262,14 +262,14 @@ tr td:first-child {
     #DateAndTimeDiv {
         display:inline-block;
         width:80%;
-        top:4px;
+        top:-36px;
     }
     #formattedDate {
         font-size: large;
     }
 
     #VenueNameDiv {
-        top:24px;
+        top:-18px;
     }
     #venueName {
         font-size: medium;

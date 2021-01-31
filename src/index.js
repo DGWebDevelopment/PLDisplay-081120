@@ -25,7 +25,9 @@ class App extends React.Component {
             homeTeamName:null, 
             awayTeamName:null,
             homeTeamLogo:null,
+            homeTeamColor:null,
             awayTeamLogo:null,
+            awayTeamColor:null,
             venueName:null,
             dateAndTime:null,
         }
@@ -69,7 +71,7 @@ class App extends React.Component {
           };
     };
 
-    getPositionOfUserAndStartComputations () {console.log("commence position hunting")
+    getPositionOfUserAndStartComputations () {
         window.navigator.geolocation.getCurrentPosition(
             position => this.computeNearestGround(position),
             error => {console.log("position error")
@@ -109,8 +111,11 @@ class App extends React.Component {
     
             container.stadium=team.stadium;
             container.distanceFromGround=Math.sqrt(
-                Math.pow((team.lat-position.coords.latitude),2)
-                + Math.pow((team.long-position.coords.longitude),2)
+                Math.pow((team.lat-52.5),2)
+                + Math.pow((team.long-(-2.1)),2)
+
+                /*Math.pow((team.lat-position.coords.latitude),2)
+                + Math.pow((team.long-position.coords.longitude),2)*/
             );
             return container;
         })
@@ -159,12 +164,24 @@ class App extends React.Component {
                 for (var x=0; x<fixturesWithinNextSevenDays.length; x++) {
                     if (orderedDistanceFromEachGround[i].stadium===fixturesWithinNextSevenDays[x].venue) {
                         var game = fixturesWithinNextSevenDays[x]
+
+                        function getTeamColor(teamName){
+                            for(var i=0; i<StadiumInformation.length; i++){
+                                if(StadiumInformation[i].teamName===teamName){
+                                    return StadiumInformation[i].color
+                                }
+                            }
+                        }
+                        var homeTeamColor = getTeamColor(game.homeTeam.team_name)
+                        var awayTeamColor = getTeamColor(game.awayTeam.team_name)
     
                         this.setState({
                             homeTeamName : game.homeTeam.team_name,
                             homeTeamLogo : game.homeTeam.logo,
+                            homeTeamColor: homeTeamColor,
                             awayTeamName : game.awayTeam.team_name,
                             awayTeamLogo : game.awayTeam.logo,
+                            awayTeamColor: awayTeamColor,
                             venueName : game.venue,
                             dateAndTime : game.event_date,
                             timeStamp: game.event_timestamp
